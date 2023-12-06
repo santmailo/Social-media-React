@@ -1,7 +1,8 @@
 import '../App.css'
 
 
-function Sidebar() {
+function Sidebar({selectedTab, setSelectedTab}) {
+
   return (
     <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar" style={{width: "280px"}}>
     <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -11,33 +12,15 @@ function Sidebar() {
     <hr />
     <ul className="nav nav-pills flex-column mb-auto">
       <li className="nav-item">
-        <a href="#" className="nav-link active" aria-current="page">
-          <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#home"></use></svg>
+        <a href="#" className={`nav-link text-white ${selectedTab=="home" ? "active" : ""}`} aria-current="page" onClick={setSelectedTab}>
+          {/* <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#home"></use></svg> */}
           Home
         </a>
       </li>
       <li>
-        <a href="#" className="nav-link text-white">
-          <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#speedometer2"></use></svg>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="#" className="nav-link text-white">
-          <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#table"></use></svg>
-          Orders
-        </a>
-      </li>
-      <li>
-        <a href="#" className="nav-link text-white">
-          <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#grid"></use></svg>
-          Products
-        </a>
-      </li>
-      <li>
-        <a href="#" className="nav-link text-white">
-          <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#people-circle"></use></svg>
-          Customers
+        <a href="#" className={`nav-link text-white ${selectedTab!="home" ? "active" : ""}`} onClick={setSelectedTab}>
+          {/* <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#speedometer2"></use></svg> */}
+          Create Post
         </a>
       </li>
     </ul>

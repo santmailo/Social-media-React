@@ -1,7 +1,7 @@
+import './App.css'
 import React from 'react'
 import {SocialMediaProvider} from './store/social-media-store';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
 import Header from "./component/Header";
 import Sidebar from "./component/Siderbar";
 import Footer from './component/Footer';

@@ -1,5 +1,6 @@
 .app-container{
   display: flex;
+  padding-top: 10px;
 }
 
 .app-content{
@@ -8,4 +9,27 @@
 
 .sidebar{
   min-height: 800px;
+}
+
+.posts-container{
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+
+.post-card{
+  margin: 10px 20px;
+}
+
+.social-tag{
+  margin: auto 5px;
+  border-radius: 1px;
+}
+
+.delete-icon{
+  padding: 10px;
+}
+
+.social-reactions{
+  margin: 10px
 }

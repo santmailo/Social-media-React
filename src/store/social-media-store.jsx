@@ -7,13 +7,16 @@ export let SocialMediaContext = createContext({
   });
 
 function reducer(currState, action) {
+  let postList = currState;
   // if(action.type == "ADD_POST"){
 
   // }
 
-  // else if(action.type == "DELETE_POST"){
+  if(action.type == "DELETE_POST"){
+    postList = currState.filter((post) => post.id!==action.payload.postId)
+  }
 
-  // }
+  return postList;
 }
 
 export function SocialMediaProvider({children}) {
@@ -30,11 +33,11 @@ export function SocialMediaProvider({children}) {
     dispatchPostList(addPostAction);
   }
 
-  function handleDeletePost(deletePost) {
+  function handleDeletePost(postId) {
     let deletePostAction = {
       type : "DELETE_POST", 
       payload : {
-        deletePost
+        postId
       }
     }
 

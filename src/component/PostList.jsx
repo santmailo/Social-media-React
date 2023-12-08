@@ -6,7 +6,7 @@ function PostList() {
 
   const {postList} = useContext(SocialMediaContext);
   return (
-    <div className='app-container'>
+    <div className='posts-container-'>
       {
         postList.map((item) => {
           return <Post key={item.userId} itemObj={item} />

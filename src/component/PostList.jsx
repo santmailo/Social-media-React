@@ -1,12 +1,17 @@
+import { useContext } from 'react';
+import { SocialMediaContext } from '../store/social-media-store';
 import Post from './Post'
 
 function PostList() {
+
+  const {postList} = useContext(SocialMediaContext);
   return (
     <div className='app-container'>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      {
+        postList.map((item) => {
+          return <Post key={item.userId} itemObj={item} />
+        })
+      }
     </div>
   )
 }

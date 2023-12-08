@@ -1,4 +1,5 @@
 import React from 'react'
+import {SocialMediaProvider} from './store/social-media-store';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import Header from "./component/Header";
@@ -11,6 +12,9 @@ function App(){
 
   const [selectedTab, setSelectedTab] = React.useState("home");
 
+  // postList, handleAddPost, handleDeletePost
+
+
   function handleSelectedTab(e){
     if(e.target.innerHTML=="Home") {
       setSelectedTab("home");
@@ -21,16 +25,18 @@ function App(){
   }
 
   return (
-    <div className='app-container'>
-      <Sidebar selectedTab={selectedTab} setSelectedTab={handleSelectedTab}/>
-      <div className='app-content'>
-        <Header /> 
-        {
-          (selectedTab=="home") ? <PostList /> : <CreatePost />
-        } 
-        <Footer />
+    <SocialMediaProvider>
+      <div className='app-container'>
+        <Sidebar selectedTab={selectedTab} setSelectedTab={handleSelectedTab}/>
+        <div className='app-content'>
+          <Header /> 
+          {
+            (selectedTab=="home") ? <PostList /> : <CreatePost />
+          } 
+          <Footer />
+        </div>
       </div>
-    </div>
+    </SocialMediaProvider>
   )
 }
 

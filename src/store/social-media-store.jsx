@@ -8,11 +8,11 @@ export let SocialMediaContext = createContext({
 
 function reducer(currState, action) {
   let postList = currState;
-  // if(action.type == "ADD_POST"){
+  if(action.type == "ADD_POST"){
+    postList = [...currState, action.payload.newPost]
+  }
 
-  // }
-
-  if(action.type == "DELETE_POST"){
+  else if(action.type == "DELETE_POST"){
     postList = currState.filter((post) => post.id!==action.payload.postId)
   }
 
@@ -25,9 +25,13 @@ export function SocialMediaProvider({children}) {
   let [postList, dispatchPostList] = useReducer(reducer, SAMPLE_POST);
 
   function handleAddPost(newPost) {
+
+    console.log(newPost);
     let addPostAction = {
       type : "ADD_POST", 
-      payload: newPost
+      payload: {
+        newPost
+      }
     }
 
     dispatchPostList(addPostAction);

@@ -1,22 +1,60 @@
-
+import { useContext, useRef } from "react";
+import { SocialMediaContext } from "../store/social-media-store";
 
 function CreatePost() {
+
+  const {handleAddPost} = useContext(SocialMediaContext);
+
+  const userIdE = useRef();
+  const titleE = useRef();
+  const descE = useRef();
+  const reactionsE = useRef();
+  const tagsE = useRef();
+
+  function handleSubmit(e){
+    e.preventDefault();
+
+    const id =  userIdE.current.value;
+    const title =  titleE.current.value;
+    const body = descE.current.value;
+    const userReaction  =  reactionsE.current.value;
+    const userId =  userIdE.current.value;
+    const tags  =  tagsE.current.value.split(" ")
+
+    handleAddPost({id, title, body, userReaction, userId, tags});
+  }
+
+
   return (
-    <form>
+    <form className="create-post" onSubmit={handleSubmit}>
+  
     <div className="mb-3">
-      <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-      <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-      <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+      <label htmlFor="userId" className="form-label">User Name</label>
+      <input type="text" className="form-control" id="userId"  placeholder="Enter your User ID" ref={userIdE}/>
     </div>
+
     <div className="mb-3">
-      <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-      <input type="password" className="form-control" id="exampleInputPassword1" />
+      <label htmlFor="title" className="form-label">Post Title</label>
+      <input type="text" className="form-control" id="title"  placeholder="How are you feeling toda..." ref={titleE}/>
     </div>
-    <div className="mb-3 form-check">
-      <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-      <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+  
+    <div className="mb-3">
+      <label htmlFor="desc" className="form-label">Post Description</label>
+      <textarea type="text" className="form-control" id="desc"  placeholder="Any more thoughts About this." rows={4}  ref={descE}/>
     </div>
-    <button type="submit" className="btn btn-primary">Submit</button>
+
+    <div className="mb-3">
+      <label htmlFor="reactions" className="form-label">Reactions</label>
+      <input type="text" className="form-control" id="reactions"  placeholder="How many people reacted to this post..." ref={reactionsE}/>
+    </div>
+
+    
+    <div className="mb-3">
+      <label htmlFor="tags" className="form-label">Tags</label>
+      <input type="text" className="form-control" id="tags"  placeholder="Please enter your tags using spaces" ref={tagsE}/>
+    </div>
+  
+    <button type="submit" className="btn btn-primary">Post</button>
   </form>
   )
 }

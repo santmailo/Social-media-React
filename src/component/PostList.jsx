@@ -9,7 +9,7 @@ function PostList() {
     <div className='posts-container-'>
       {
         postList.map((item) => {
-          return <Post key={item.userId} itemObj={item} />
+          return <Post key={item.id} itemObj={item} />
         })
       }
     </div>

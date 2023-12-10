@@ -22,6 +22,13 @@ function CreatePost() {
     const tags  =  tagsE.current.value.split(" ")
 
     handleAddPost({id, title, body, userReaction, userId, tags});
+
+    userIdE.current.value = "";
+    titleE.current.value = "";
+    descE.current.value = "";
+    reactionsE.current.value = "";
+    userIdE.current.value = "";
+    tagsE.current.value = "";
   }
 
 

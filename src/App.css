@@ -1,6 +1,5 @@
 .app-container{
-  display: flex;
-  padding-top: 10px;
+  display: flex; 
 }
 
 .app-content{
@@ -44,4 +43,15 @@
   width: 80%;
   margin: auto;
   margin-top: 50px;
+}
+
+
+
+.welcome-msg{
+  margin-top: 100px;
+  height: 50%;
+}
+
+.loading{
+  margin: 100px auto;
 }

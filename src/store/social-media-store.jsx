@@ -2,14 +2,19 @@ import { createContext, useReducer } from "react";
 
 export let SocialMediaContext = createContext({
     postList : [],
+    handleDefaultPostList: () => {},
     handleAddPost : () => {},
     handleDeletePost : () => {}
   });
 
 function reducer(currState, action) {
   let postList = currState;
-  if(action.type == "ADD_POST"){
-    postList = [...currState, action.payload.newPost]
+  if(action.type =="GET_API_POSTS"){
+    postList = action.payload.getPost
+  }
+  
+  else if(action.type == "ADD_POST"){
+    postList = [action.payload.newPost, ...currState]
   }
 
   else if(action.type == "DELETE_POST"){
@@ -22,11 +27,22 @@ function reducer(currState, action) {
 export function SocialMediaProvider({children}) {
   
 
-  let [postList, dispatchPostList] = useReducer(reducer, SAMPLE_POST);
+  let [postList, dispatchPostList] = useReducer(reducer, []);
+
+
+  function handleDefaultPostList(getPost){
+    // this method handles getting posts from API
+    let apiPostAction = {
+      type : "GET_API_POSTS",
+      payload : {
+        getPost
+      }
+    }
+
+    dispatchPostList(apiPostAction)
+  }
 
   function handleAddPost(newPost) {
-
-    console.log(newPost);
     let addPostAction = {
       type : "ADD_POST", 
       payload: {
@@ -51,38 +67,11 @@ export function SocialMediaProvider({children}) {
   // console.log(postList);
 
   return (
-    <SocialMediaContext.Provider value={{postList: postList, handleAddPost, handleDeletePost}}>
+    <SocialMediaContext.Provider value={{postList: postList, handleAddPost, handleDeletePost, handleDefaultPostList}}>
       {children}
     </SocialMediaContext.Provider>
   )
 }
 
 
-const SAMPLE_POST = [
-  {
-    id: 1,
-    title: "Pass ho gaye",
-    body: "This is to inform you that 4 saal ki masti ke baad bhi ho gye hai paas",
-    userReaction : 0,
-    userId: "santmailo",
-    tags : ["graduation","pass","btech"]
-  },
-  {
-    id: 2,
-    title: "going to mumbai",
-    body: "vacation in mumbai.... hope to enjoy a lot peace out!!",
-    userReaction : 0,
-    userId: "sunil",
-    tags: ["travel", "mumbai", "holiday"]
-  },
-  {
-    id: 3,
-    title: "sample post",
-    body: "Checking this social media features",
-    userReaction : 0,
-    userId: "gulu",
-    tags : ["sample", "post", "testing", "features"]
-  }
-  
-];
   

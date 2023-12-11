@@ -17,7 +17,7 @@ function Post({itemObj}) {
           itemObj.tags.map(tag => <span className="badge rounded-pill text-bg-primary social-tag" key={tag}>{tag}</span>)
         }
       </div>
-      <div className="alert alert-success social-reactions" role="alert">{itemObj.userReaction} people have Reacted to this post </div>
+      <div className="alert alert-success social-reactions" role="alert">{itemObj.reactions} people have Reacted to this post </div>
 
     </div>
   )

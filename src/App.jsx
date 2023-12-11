@@ -5,16 +5,16 @@ import './App.css'
 import Header from "./component/Header";
 import Sidebar from "./component/Siderbar";
 import Footer from './component/Footer';
-import CreatePost from './component/CreatePost'
-import PostList from './component/PostList'
+import { Outlet } from 'react-router-dom';
+// import CreatePost from './component/CreatePost'
+// import PostList from './component/PostList'
 
 function App(){
 
   const [selectedTab, setSelectedTab] = React.useState("home");
 
+  
   // postList, handleAddPost, handleDeletePost
-
-
   function handleSelectedTab(e){
     if(e.target.innerHTML=="Home") {
       setSelectedTab("home");
@@ -30,9 +30,10 @@ function App(){
         <Sidebar selectedTab={selectedTab} setSelectedTab={handleSelectedTab}/>
         <div className='app-content'>
           <Header /> 
-          {
+            <Outlet />
+          {/* {
             (selectedTab=="home") ? <PostList /> : <CreatePost />
-          } 
+          }  */}
           <Footer />
         </div>
       </div>
